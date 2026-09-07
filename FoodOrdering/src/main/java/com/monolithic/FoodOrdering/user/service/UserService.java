@@ -7,8 +7,10 @@ import com.monolithic.FoodOrdering.user.model.User;
 import com.monolithic.FoodOrdering.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
+
 public class UserService {
 
     @Autowired
@@ -31,4 +33,18 @@ public class UserService {
         }
         return user;
     }
+
+    public List<User> getAllUsers(){
+        return userRepo.findAll();
+    }
+
+    public String deleteUserById(long userId){
+        User user = userRepo.findById(userId).orElseThrow();
+        String name = user.getName();
+        userRepo.deleteById(userId);
+
+        return "User deleted : "+name;
+    }
+
+
 }
