@@ -1,19 +1,26 @@
 package com.monolithic.FoodOrdering.notification;
 
-import com.monolithic.FoodOrdering.orders.model.OrderCreatedEvent;
-import lombok.RequiredArgsConstructor;
+
+import com.monolithic.FoodOrdering.orders.model.OrderEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class KafkaConsumer {
 
-    private final EmailService emailService;
+    @Autowired
+    private JavaMailSender mailSender;
 
-    @KafkaListener(topics = "orders", groupId = "orders-group")
-    public void receiver(OrderCreatedEvent event) {
+    @KafkaListener(topics = "orders-placed", groupId = "orders-groups")
+    public void sendMessage(OrderEvent event){
 
-        emailService.sendOrderEmail(event);
+        SimpleMailMessage sendMail = new SimpleMailMessage();
+        sendMail.setTo(event.getEmail());
+        sendMail.setSubject(String.format("Your Order %s with Order id %d is confirmed", event.getOrderName(), event.getId()));
+        sendMail.setText(String.format("Hi %s \nYour Order %s with Order id %d is confirmed", event.getName() , event.getOrderName(), event.getId()));
+        mailSender.send(sendMail);
     }
 }

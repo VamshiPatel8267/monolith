@@ -2,15 +2,17 @@ package com.monolithic.FoodOrdering.orders.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class OrderCreatedEvent {
+@NoArgsConstructor
+public class OrderEvent {
+
     private long id;
-    private String email;
     private String name;
-    private String OrderName;
+    private String email;
+    private String orderName;
     private double price;
 }
