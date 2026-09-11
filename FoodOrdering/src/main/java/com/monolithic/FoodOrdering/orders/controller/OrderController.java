@@ -30,11 +30,11 @@ public class OrderController {
         return orderService.delete(id);
     }
 
-    @PutMapping("/update/{id}/{status}")
-    public String update(@PathVariable long id , @PathVariable OrderStatus status){
-        orderService.updateStatus(id , status);
-        return "your order is updated to "+ status;
-    }
+//    @PutMapping("/update/{id}/{status}")
+//    public String update(@PathVariable long id , @PathVariable OrderStatus status){
+//        orderService.updateStatus(id , status);
+//        return "your order is updated to "+ status;
+//    }
 
     @GetMapping("/getOrdersById/{id}")
     public List<Order> getbyId(@PathVariable long id){
