@@ -19,8 +19,6 @@ target/
 *.iml
 *.ipr
 
-# Spring Boot properties
-FoodOrdering/src/main/resources/application.properties
 
 ### NetBeans ###
 /nbproject/private/

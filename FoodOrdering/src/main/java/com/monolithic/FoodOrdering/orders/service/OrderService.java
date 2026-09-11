@@ -26,7 +26,6 @@ public class OrderService {
     @Autowired
     private KafkaProducer producer;
 
-
     public Order placeOrder(Order order) {
 
         long userID = order.getUser().getId();
