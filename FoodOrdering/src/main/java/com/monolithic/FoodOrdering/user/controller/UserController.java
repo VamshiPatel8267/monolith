@@ -1,6 +1,5 @@
 package com.monolithic.FoodOrdering.user.controller;
 
-import com.monolithic.FoodOrdering.orders.model.Order;
 import com.monolithic.FoodOrdering.user.model.User;
 import com.monolithic.FoodOrdering.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
